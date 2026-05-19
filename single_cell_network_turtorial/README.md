@@ -2,6 +2,13 @@
 
 This tutorial explains how to prepare and upload the CSV files required for the **Single-Cell Network** workflow. It is written for users who want to quickly understand each file, check the required columns, and run the example data successfully.
 
+## Preparation notes
+
+1. Keep `cellgroup` names consistent across all files.
+2. Make sure each file contains the required columns.
+3. Use the correct numeric encoding for `weight`, CNV, SNV, expression, and methylation values.
+
+Once all files pass the checklist, upload them in the web interface, click **Upload Files**, and then run the analysis script.
 ---
 
 ## 1. What this workflow does
@@ -22,41 +29,24 @@ Typical use cases include:
 Upload the following CSV files in the web interface.
 
 | Upload field | Example file name | Required? | Purpose |
-|---|---:|:---:|---|
-| Edges file | `singlecell_edges_example.csv` | Yes | Defines interactions between cell groups or nodes. |
-| Nodes file | `singlecell_nodes_example.csv` | Yes | Defines nodes and the cell group each node belongs to. |
-| MEG / community file | `singlecell_megList_example.csv` | Yes | Assigns each gene-cell group pair to a community. |
-| Expression matrix | `singlecell_expression_matrix_example_data1.csv` | Yes | Provides expression values for each cell group. |
-| Methylation matrix | `singlecell_methylation_matrix_example_data2.csv` | Yes | Provides methylation values for each cell group. |
-| CNV matrix | `singlecell_cnv_example_data3.csv` | Yes | Provides copy-number variation states. |
-| SNV matrix | `singlecell_snv_example_data4.csv` | Yes | Provides mutation counts or mutation status. |
+|---|---|---|---|
+| Edges file | `00_singlecell_edges.csv` | Yes | Defines interactions between cell groups or nodes. |
+| Nodes file | `01_singlecell_nodes.csv` | Yes | Defines nodes and the cell group each node belongs to. |
+| MEG / community file | `02_singlecell_megList.csv` | Yes | Assigns each gene-cell group pair to a community. |
+| Expression matrix | `03_singlecell_expression_matrix_data1.csv` | Yes | Provides expression values for each cell group. |
+| Methylation matrix | `04_singlecell_methylation_matrix_data2.csv` | Yes | Provides methylation values for each cell group. |
+| CNV matrix | `05_singlecell_cnv_data3.csv` | Yes | Provides copy-number variation states. |
+| SNV matrix | `06_singlecell_snv_data4.csv` | Yes | Provides mutation counts or mutation status. |
 | Sample group | optional | Optional | Adds grouping information for visualization, if supported by your workflow. |
 
 > **Important:** The first column of matrix files must be `cellgroup`. This tells the system to use the single-cell analysis route.
 
 ---
 
-## 3. Recommended upload order
 
-```mermaid
-flowchart TD
-    A[Prepare CSV files] --> B[Upload edges file]
-    B --> C[Upload nodes file]
-    C --> D[Upload MEG/community file]
-    D --> E[Upload expression matrix]
-    E --> F[Upload methylation matrix]
-    F --> G[Upload CNV matrix]
-    G --> H[Upload SNV matrix]
-    H --> I[Optional: upload sample group]
-    I --> J[Click Upload Files]
-    J --> K[Run R Script]
-```
+## 3. File-by-file guide
 
----
-
-## 4. File-by-file guide
-
-### 4.1 `singlecell_edges_example.csv`
+### 3.1 `00_singlecell_edges.csv`
 
 This file defines the network edges. Each row represents one interaction.
 
@@ -94,7 +84,7 @@ FGF7,FGFR1,APOE+ FIB,FBN1+ FIB,FGF7_FGFR1,0.009363
 
 ---
 
-### 4.2 `singlecell_nodes_example.csv`
+### 4.2 `01_singlecell_nodes.csv`
 
 This file defines all nodes used in the network. Each row should describe a gene and the cell group it belongs to.
 
@@ -125,7 +115,7 @@ CXCL12,APOE+ FIB
 
 ---
 
-### 4.3 `singlecell_megList_example.csv`
+### 4.3 `02_singlecell_megList.csv`
 
 This file assigns each gene-cell group pair to a community.
 
@@ -157,7 +147,7 @@ CXCL12,APOE+ FIB,1
 
 ---
 
-### 4.4 `singlecell_expression_matrix_example_data1.csv`
+### 4.4 `03_singlecell_expression_matrix_data1.csv`
 
 This file provides gene expression values for each cell group.
 
@@ -186,7 +176,7 @@ Inflam. FIB,0,0,0,1.966858,1.618042
 
 ---
 
-### 4.5 `singlecell_methylation_matrix_example_data2.csv`
+### 4.5 `04_singlecell_methylation_matrix_data2.csv`
 
 This file has the same structure as the expression matrix, but values represent methylation levels.
 
@@ -211,7 +201,7 @@ Inflam. FIB,0,0,0,0.522068,1.618042
 
 ---
 
-### 4.6 `singlecell_cnv_example_data3.csv`
+### 4.6 `05_singlecell_cnv_data3.csv`
 
 This file describes copy-number variation states for each cell group.
 
@@ -242,7 +232,7 @@ Inflam. FIB,0,1,0,0,1,1
 
 ---
 
-### 4.7 `singlecell_snv_example_data4.csv`
+### 4.7 `06_singlecell_snv_data4.csv`
 
 This file describes mutation counts or mutation status for each cell group.
 
@@ -290,66 +280,3 @@ Use this checklist to avoid the most common upload errors.
 | File names match the upload field | This reduces confusion during manual upload. |
 
 ---
-
-## 6. How to package the example files into a ZIP
-
-If you want to provide the example data as one downloadable file, run the following command in the folder containing the CSV files:
-
-```bash
-zip single_cell_network_example.zip \
-  singlecell_edges_example.csv \
-  singlecell_nodes_example.csv \
-  singlecell_megList_example.csv \
-  singlecell_expression_matrix_example_data1.csv \
-  singlecell_methylation_matrix_example_data2.csv \
-  singlecell_cnv_example_data3.csv \
-  singlecell_snv_example_data4.csv
-```
-
-Check the ZIP content:
-
-```bash
-unzip -l single_cell_network_example.zip
-```
-
----
-
-## 7. Common problems and fixes
-
-| Problem | Possible cause | Fix |
-|---|---|---|
-| The system does not recognize the data as single-cell data | The matrix files do not contain `cellgroup` as the first column | Rename the first column to `cellgroup`. |
-| Upload succeeds but the script fails | Required columns are missing | Check column names in edges, nodes, and MEG files. |
-| Network nodes do not match edges | Cell group or gene names are inconsistent | Use the same spelling across all files. |
-| Edge coloring does not work | `interact` column is empty or missing | Add interaction labels if you want to color by interaction ID. |
-| CNV or SNV layer looks wrong | Values are not encoded correctly | Use the value definitions in Sections 4.6 and 4.7. |
-| Some values are read as text instead of numbers | Extra spaces, symbols, or invalid characters in numeric columns | Clean the CSV and keep numeric columns numeric. |
-
----
-
-## 8. Minimal example structure
-
-A clean single-cell example package should look like this:
-
-```text
-single_cell_network_example.zip
-├── singlecell_edges_example.csv
-├── singlecell_nodes_example.csv
-├── singlecell_megList_example.csv
-├── singlecell_expression_matrix_example_data1.csv
-├── singlecell_methylation_matrix_example_data2.csv
-├── singlecell_cnv_example_data3.csv
-└── singlecell_snv_example_data4.csv
-```
-
----
-
-## 9. Summary
-
-For a successful single-cell network upload, focus on three rules:
-
-1. Keep `cellgroup` names consistent across all files.
-2. Make sure each file contains the required columns.
-3. Use the correct numeric encoding for `weight`, CNV, SNV, expression, and methylation values.
-
-Once all files pass the checklist, upload them in the web interface, click **Upload Files**, and then run the analysis script.
