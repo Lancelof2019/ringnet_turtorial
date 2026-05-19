@@ -28,7 +28,7 @@ The Gene Network module visualizes relationships between genes as a network.
 Upload the files listed below. The first three files are required for the basic network structure. The data matrices are used to draw outer rings around the network.
 
 | Upload field | Example file name | Required? | What it contains | Used for |
-|---|---|---:|---|---|
+|---|---|---|---|---|
 | Graph Edges | `00_graph_edges.csv` | Yes | Gene-gene interactions | Network edges |
 | Graph Nodes | `01_graph_nodes.csv` | Yes | Gene node list | Network nodes |
 | Node Group | `02_megList.csv` | Yes | Gene community or module assignment | Node grouping / module coloring |
@@ -67,7 +67,7 @@ Upload files in this order to reduce mistakes:
 This file defines interactions between genes. Each row is one edge.
 
 | Column | Required? | Description | Example |
-|---|---:|---|---|
+|---|---|---|---|
 | `from` | Yes | Source gene symbol | `DNAJC14` |
 | `to` | Yes | Target gene symbol | `AGTR1` |
 | `interact` | Optional | Interaction category or label | `0` or `1` |
@@ -98,7 +98,7 @@ Checklist:
 This file lists all genes used as nodes in the network.
 
 | Column | Required? | Description | Example |
-|---|---:|---|---|
+|---|---|---|---|
 | `name` | Yes | Gene symbol used as the node ID | `DNAJC14` |
 
 Example:
@@ -128,7 +128,7 @@ Checklist:
 This file assigns each gene to a community, module, or functional group.
 
 | Column | Required? | Description | Example |
-|---|---:|---|---|
+|---|---|---|---|
 | `gene` | Yes | Gene symbol | `DNAJC14` |
 | `community` | Yes | Integer community ID | `1` |
 
@@ -226,7 +226,7 @@ Checklist:
 This file describes copy number variation states for genes across samples.
 
 | Value | Meaning |
-|---:|---|
+|---|---|
 | `-1` | Copy-number loss |
 | `0` | Copy-number neutral |
 | `1` | Copy-number gain |
@@ -256,7 +256,7 @@ Checklist:
 This file records mutation counts per gene for each sample.
 
 | Value | Meaning |
-|---:|---|
+|---|---|
 | `0` | No mutation |
 | `1` | One mutation |
 | `2` | Two mutations |
