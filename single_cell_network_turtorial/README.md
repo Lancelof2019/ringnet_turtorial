@@ -29,7 +29,7 @@ Typical use cases include:
 Upload the following CSV files in the web interface.
 
 | Upload field | Example file name | Required? | Purpose |
-|---|---|---|---|
+| :---: | :---: | :---: | :---: |
 | Edges file | `00_singlecell_edges.csv` | Yes | Defines interactions between cell groups or nodes. |
 | Nodes file | `01_singlecell_nodes.csv` | Yes | Defines nodes and the cell group each node belongs to. |
 | MEG / community file | `02_singlecell_megList.csv` | Yes | Assigns each gene-cell group pair to a community. |
@@ -53,7 +53,7 @@ This file defines the network edges. Each row represents one interaction.
 #### Required columns
 
 | Column | Required? | Description |
-|---|:---:|---|
+| :---: | :---: | :---: |
 | `from` | Yes | Source cell group or source node. |
 | `to` | Yes | Target cell group or target node. |
 | `weight` | Yes | Numeric interaction strength. |
@@ -61,7 +61,7 @@ This file defines the network edges. Each row represents one interaction.
 #### Optional columns
 
 | Column | Required? | Description |
-|---|:---:|---|
+| :---: | :---: | :---: |
 | `from_gene` | Optional | Gene involved in the source side of the interaction. |
 | `to_gene` | Optional | Gene involved in the target side of the interaction. |
 | `interact` | Optional | Interaction label, such as ligand-receptor pair. If provided, it can be used to color edges by interaction type. |
@@ -91,7 +91,7 @@ This file defines all nodes used in the network. Each row should describe a gene
 #### Required columns
 
 | Column | Required? | Description |
-|---|:---:|---|
+| :---: | :---: | :---: |
 | `name` | Yes | Gene name or node name, such as `FGF7`. |
 | `cellgroup` | Yes | Cell group name, such as `APOE+ FIB`. |
 
@@ -122,7 +122,7 @@ This file assigns each gene-cell group pair to a community.
 #### Required columns
 
 | Column | Required? | Description |
-|---|:---:|---|
+| :---: | :---: | :---: |
 | `gene` | Yes | Gene name. |
 | `cellgroup` | Yes | Cell group name. |
 | `community` | Yes | Integer community ID. |
@@ -183,7 +183,7 @@ This file has the same structure as the expression matrix, but values represent 
 #### Format
 
 | Part | Meaning |
-|---|---|
+| :---: | :---: |
 | Rows | Cell groups |
 | Columns | Gene names |
 | First column | Must be `cellgroup` |
@@ -215,7 +215,7 @@ This file describes copy-number variation states for each cell group.
 #### CNV value meaning
 
 | Value | Meaning |
-|---:|---|
+| :---: | :---: |
 | `-1` | Copy-number loss |
 | `0` | Copy-number neutral |
 | `1` | Copy-number gain |
@@ -246,7 +246,7 @@ This file describes mutation counts or mutation status for each cell group.
 #### SNV value meaning
 
 | Value | Meaning |
-|---:|---|
+| :---: | :---: |
 | `0` | No mutation |
 | `1` | One mutation |
 | `2` | Two mutations |
@@ -269,7 +269,7 @@ Inflam. FIB,1,0,0,0,0,0
 Use this checklist to avoid the most common upload errors.
 
 | Check item | Why it matters |
-|---|---|
+| :---: | :---: |
 | All files are saved as `.csv` | The upload form expects CSV files. |
 | Matrix files contain a `cellgroup` column | This identifies the data as single-cell input. |
 | Cell group names are consistent | `APOE+ FIB` and `APOE FIB` may be treated as different groups. |
