@@ -313,37 +313,7 @@ These may be treated as different IDs.
 | SNV matrix | first column = gene symbols; other columns = patient IDs |
 
 ---
-
-## 6. ZIP Package Example
-
-If you want to provide a complete example package, compress the CSV files into one ZIP file.
-
-- `05_patients_cnv_data3.csv`
-- `00_patients_edges.csv`
-- `03_patients_expression_data1.csv`
-- `02_patients_megList.csv`
-- `04_patients_methylation_data2.csv`
-- `01_patients_nodes.csv`
-- `06_patients_snv_data4.csv`
-
-Check the ZIP content:
-
-
-
-Expected content:
-
-- `05_patients_cnv_data3.csv`
-- `00_patients_edges.csv`
-- `03_patients_expression_data1.csv`
-- `02_patients_megList.csv`
-- `04_patients_methylation_data2.csv`
-- `01_patients_nodes.csv`
-- `06_patients_snv_data4.csv`
-
----
-
-
-## 7. Final Checklist Before Upload
+## 6. Final Checklist Before Upload
 
 - [ ] Edge file contains `from`, `to`, and `weight`, and these column names have not been renamed.
 - [ ] Edge weights are numeric similarity scores; in this example they are generated from a Gaussian-kernel-based similarity matrix.
