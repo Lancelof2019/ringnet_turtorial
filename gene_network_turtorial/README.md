@@ -2,6 +2,14 @@
 
 This tutorial explains how to prepare and upload CSV files for building a **Gene-Gene Interaction Network**. It is designed for first-time users who want to quickly understand which files are required, what each file means, and how to check whether the uploaded data are valid.
 
+
+## Preparation notes
+
+- Start with the provided example files first.
+- Replace the example values with your own data only after you understand the format.
+- Keep column names unchanged.
+- Keep gene symbols and sample IDs consistent across all files.
+- If your data do not include one optional layer, leave that optional file empty only if the system allows it, or skip that upload field if it is not required.
 ---
 
 ## 1. What this example does
@@ -12,13 +20,6 @@ The Gene Network module visualizes relationships between genes as a network.
 - **Edges** represent interactions between genes.
 - **Rings around the network** show omics or clinical values, such as gene expression, methylation, CNV, SNV, or sample groups.
 
-```mermaid
-flowchart LR
-    A[Prepare CSV files] --> B[Upload required files]
-    B --> C[Check file format]
-    C --> D[Run analysis]
-    D --> E[View gene network visualization]
-```
 
 ---
 
@@ -28,14 +29,14 @@ Upload the files listed below. The first three files are required for the basic 
 
 | Upload field | Example file name | Required? | What it contains | Used for |
 |---|---|---:|---|---|
-| Graph Edges | `example_graph_edges.csv` | Yes | Gene-gene interactions | Network edges |
-| Graph Nodes | `example_graph_nodes.csv` | Yes | Gene node list | Network nodes |
-| Node Group | `example_megList.csv` | Yes | Gene community or module assignment | Node grouping / module coloring |
-| Data 1 | `example_gene_expression_data1.csv` | Recommended | Continuous gene expression values | Outermost ring |
-| Data 2 | `example_methylation_data2.csv` | Recommended | Continuous DNA methylation values | Second ring |
-| Data 3 | `example_cnv_data3.csv` | Recommended | CNV status values | Third ring |
-| Data 4 | `example_snv_data4.csv` | Recommended | SNV / mutation values | Innermost ring |
-| Sample Group | `example_stage.csv` | Optional | Patient stage or sample group information | Grouped bars / stratified display |
+| Graph Edges | `00_graph_edges.csv` | Yes | Gene-gene interactions | Network edges |
+| Graph Nodes | `01_graph_nodes.csv` | Yes | Gene node list | Network nodes |
+| Node Group | `02_megList.csv` | Yes | Gene community or module assignment | Node grouping / module coloring |
+| Data 1 | `03_gene_expression_data1.csv` | Recommended | Continuous gene expression values | Outermost ring |
+| Data 2 | `04_methylation_data2.csv` | Recommended | Continuous DNA methylation values | Second ring |
+| Data 3 | `05_cnv_data3.csv` | Recommended | CNV status values | Third ring |
+| Data 4 | `06_snv_data4.csv` | Recommended | SNV / mutation values | Innermost ring |
+| Sample Group | `06_stage.csv` | Optional | Patient stage or sample group information | Grouped bars / stratified display |
 
 > Tip: Keep the file names simple and avoid spaces. CSV files should be comma-separated and saved in UTF-8 format.
 
@@ -45,25 +46,15 @@ Upload the files listed below. The first three files are required for the basic 
 
 Upload files in this order to reduce mistakes:
 
-1. `example_graph_edges.csv`
-2. `example_graph_nodes.csv`
-3. `example_megList.csv`
-4. `example_gene_expression_data1.csv`
-5. `example_methylation_data2.csv`
-6. `example_cnv_data3.csv`
-7. `example_snv_data4.csv`
-8. `example_stage.csv` if available
+1. `00_graph_edges.csv`
+2. `01_graph_nodes.csv`
+3. `02_megList.csv`
+4. `03_gene_expression_data1.csv`
+5. `04_methylation_data2.csv`
+6. `05_cnv_data3.csv`
+7. `06_snv_data4.csv`
+8. `07_stage.csv` if available
 
-```mermaid
-flowchart TD
-    E[Edges file] --> N[Nodes file]
-    N --> G[Node group file]
-    G --> D1[Data 1: expression]
-    D1 --> D2[Data 2: methylation]
-    D2 --> D3[Data 3: CNV]
-    D3 --> D4[Data 4: SNV]
-    D4 --> S[Optional sample group]
-```
 
 ---
 
@@ -71,7 +62,7 @@ flowchart TD
 
 ### 4.1 Graph Edges file
 
-**File:** `example_graph_edges.csv`
+**File:** `00_graph_edges.csv`
 
 This file defines interactions between genes. Each row is one edge.
 
@@ -94,7 +85,7 @@ PTEN,MME,1,0.40162
 
 Checklist:
 
-- Every gene in `from` and `to` should also appear in `example_graph_nodes.csv`.
+- Every gene in `from` and `to` should also appear in `01_graph_nodes.csv`.
 - Gene names should be consistent across all files.
 - Do not leave empty values in `from` or `to`.
 
@@ -102,7 +93,7 @@ Checklist:
 
 ### 4.2 Graph Nodes file
 
-**File:** `example_graph_nodes.csv`
+**File:** `01_graph_nodes.csv`
 
 This file lists all genes used as nodes in the network.
 
@@ -132,7 +123,7 @@ Checklist:
 
 ### 4.3 Node Group file
 
-**File:** `example_megList.csv`
+**File:** `02_megList.csv`
 
 This file assigns each gene to a community, module, or functional group.
 
@@ -172,7 +163,7 @@ Checklist:
 
 ### 4.4 Data 1: Gene Expression matrix
 
-**File:** `example_gene_expression_data1.csv`
+**File:** `03_gene_expression_data1.csv`
 
 This file contains gene expression values across patient samples.
 
@@ -201,7 +192,7 @@ Checklist:
 
 ### 4.5 Data 2: DNA Methylation matrix
 
-**File:** `example_methylation_data2.csv`
+**File:** `04_methylation_data2.csv`
 
 This file has the same matrix format as gene expression.
 
@@ -228,9 +219,9 @@ Checklist:
 
 ---
 
-### 4.6 Data 3: CNV matrix
+### 4.6 Data 3: CNV(copy number variation) matrix 
 
-**File:** `example_cnv_data3.csv`
+**File:** `05_cnv_data3.csv``
 
 This file describes copy number variation states for genes across samples.
 
@@ -258,9 +249,9 @@ Checklist:
 
 ---
 
-### 4.7 Data 4: SNV matrix
+### 4.7 Data 4: SNV(single nucleotide variant) matrix
 
-**File:** `example_snv_data4.csv`
+**File:** `06_snv_data4.csv`
 
 This file records mutation counts per gene for each sample.
 
@@ -291,7 +282,7 @@ Checklist:
 
 ### 4.8 Sample Group file
 
-**File:** `example_stage.csv`
+**File:** `07_stage.csv`
 
 This optional file assigns each sample to a clinical stage or group. It is useful for grouped visualization and stratified analysis.
 
@@ -311,25 +302,16 @@ Checklist:
 - This file is optional. You can skip it if no sample group information is available.
 
 ---
-
 ## 5. How the rings are displayed
 
 The uploaded data files are shown as rings around the network.
 
-```mermaid
-flowchart TB
-    A[Gene network center] --> B[Data 4: SNV / innermost ring]
-    B --> C[Data 3: CNV / third ring]
-    C --> D[Data 2: Methylation / second ring]
-    D --> E[Data 1: Expression / outermost ring]
-```
-
 | Ring position | Upload field | Data type | Example file |
 |---|---|---|---|
-| Outermost ring | Data 1 | Continuous | `example_gene_expression_data1.csv` |
-| Second ring | Data 2 | Continuous | `example_methylation_data2.csv` |
-| Third ring | Data 3 | Integer / categorical numeric | `example_cnv_data3.csv` |
-| Innermost ring | Data 4 | Integer / mutation count | `example_snv_data4.csv` |
+| Outermost ring | Data 1 | Continuous | `03_gene_expression_data1.csv` |
+| Second ring | Data 2 | Continuous | `04_methylation_data2.csv` |
+| Third ring | Data 3 | Integer / categorical numeric | `05_cnv_data3.csv` |
+| Innermost ring | Data 4 | Integer / mutation count | `06_snv_data4.csv` |
 
 ---
 
@@ -348,73 +330,6 @@ Use this checklist before clicking **Upload Files**.
 | No empty required columns | Avoids upload failure |
 | Optional sample group file matches sample IDs | Enables correct grouping in visualization |
 
----
 
-## 7. Common problems and fixes
 
-| Problem | Possible cause | How to fix |
-|---|---|---|
-| Some genes do not appear in the network | Genes in edges are missing from nodes | Add all `from` and `to` genes to `example_graph_nodes.csv` |
-| Ring values are missing | Gene names do not match between matrix and network files | Make gene symbols consistent across files |
-| Upload fails | Required columns are missing | Check column names exactly: `from`, `to`, `name`, `gene`, `community` |
-| CNV colors look incorrect | CNV values are not coded numerically | Use `-1`, `0`, and `1` |
-| SNV ring does not show mutations | Mutation values are all `0` or formatted as text | Use integer values such as `0`, `1`, or `2` |
-| Sample grouping does not work | Sample IDs do not match data matrices | Use the exact same sample IDs across files |
 
----
-
-## 8. Minimal example package structure
-
-A complete example ZIP package can be organized like this:
-
-```text
-gene_network_example.zip
-├── example_graph_edges.csv
-├── example_graph_nodes.csv
-├── example_megList.csv
-├── example_gene_expression_data1.csv
-├── example_methylation_data2.csv
-├── example_cnv_data3.csv
-├── example_snv_data4.csv
-└── example_stage.csv
-```
-
-To create the ZIP file in Linux or macOS:
-
-```bash
-zip gene_network_example.zip \
-example_graph_edges.csv \
-example_graph_nodes.csv \
-example_megList.csv \
-example_gene_expression_data1.csv \
-example_methylation_data2.csv \
-example_cnv_data3.csv \
-example_snv_data4.csv \
-example_stage.csv
-```
-
----
-
-## 9. Beginner-friendly workflow
-
-```mermaid
-flowchart TD
-    A[Download example ZIP] --> B[Open each CSV file]
-    B --> C[Compare your data with the example format]
-    C --> D[Rename columns exactly as required]
-    D --> E[Check gene and sample IDs]
-    E --> F[Upload files on the web page]
-    F --> G[Click Upload Files]
-    G --> H[Run R Script]
-    H --> I[Review network output]
-```
-
----
-
-## 10. Final notes
-
-- Start with the provided example files first.
-- Replace the example values with your own data only after you understand the format.
-- Keep column names unchanged.
-- Keep gene symbols and sample IDs consistent across all files.
-- If your data do not include one optional layer, leave that optional file empty only if the system allows it, or skip that upload field if it is not required.
