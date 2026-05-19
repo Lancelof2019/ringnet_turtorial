@@ -226,7 +226,7 @@ Checklist:
 This file describes copy number variation states for genes across samples.
 
 | Value | Meaning |
-|---|---|
+|---:|---|
 | `-1` | Copy-number loss |
 | `0` | Copy-number neutral |
 | `1` | Copy-number gain |
@@ -256,7 +256,7 @@ Checklist:
 This file records mutation counts per gene for each sample.
 
 | Value | Meaning |
-|---|---|
+|---:|---|
 | `0` | No mutation |
 | `1` | One mutation |
 | `2` | Two mutations |
